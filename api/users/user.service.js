@@ -1,0 +1,25 @@
+const pool = require('../../config/database');
+
+module.exports = {
+    create: (data, callback) => {
+        pool.query(
+            `insert into registration(firstName, lastName, gender, email, password, number)
+                values(?,?,?,?,?,?)`,
+            [
+                data.first_name,
+                data.last_name,
+                data.gender,
+                data.email,
+                data.password,
+                data.number
+            ],
+            (err, result, field) => {
+                if(err){
+                   return callback(err);
+                }
+                return callback(null, result);
+            }
+                
+        )
+    }
+}
