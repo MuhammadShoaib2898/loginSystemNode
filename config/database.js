@@ -9,7 +9,7 @@ const pool = database.createPool({
 
 pool.getConnection(err => {
     if (err) throw err;
-    console.log("Connected!");
+    console.log("Database Connected!");
 });
 
 module.exports = pool;
