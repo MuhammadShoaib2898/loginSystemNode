@@ -59,5 +59,22 @@ module.exports = {
                 data: result
             });
         });
-    }
+    },
+    updateUser: (req, res) => {
+        const body = req.body;
+        const salt = bcrypt.genSaltSync(10);
+        body.password = bcrypt.hashSync(body.password, salt);
+        userService.updateUser(body, (err, result) =>{
+            if(err){
+                return res.status(500).json({
+                    success: 0,
+                    message: "Error.."
+                });
+            }
+            res.status(200).json({
+                success: 1,
+                message: "Updated Successfully"
+            });
+        });
+    },
 }
