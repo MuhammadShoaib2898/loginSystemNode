@@ -1,4 +1,5 @@
 require('dotenv').config();
+<<<<<<< HEAD
 const express = require('express'); 
 const bodyParser = require('body-parser');
 const app = express();
@@ -26,3 +27,21 @@ const userRouter = require('./api/users/user.router');
 app.use('/api/user', userRouter);
 
 app.listen(process.env.APP_PORT);
+=======
+const express = require('express');
+
+const app = express();
+const { APP_PORT } = process.env;
+const userRouter = require('./api/users/user.router');
+const errorHandler = require('./middlewares/error.middleware');
+
+app.use(express.json());
+
+app.use('/api/user', userRouter);
+
+app.use(errorHandler);
+
+app.listen(APP_PORT, () => {
+  console.log(`Server is running on port: ${APP_PORT}`);
+});
+>>>>>>> a1fd8d4d77d72978ceac80e284820df1d2c355dd
