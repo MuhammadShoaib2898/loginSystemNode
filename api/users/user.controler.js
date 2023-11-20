@@ -6,8 +6,8 @@ module.exports = {
         console.log(req);
         const body = req.body;
         console.log(body);
-        // const salt = genSaltSync(10);
-        // body.password = hashSync(body.password, salt);
+        const salt = bcrypt.genSaltSync(10);
+        body.password = bcrypt.hashSync(body.password, salt);
         userService.create(body, (err, result) => {
             if(err) {
                 console.log(err);
