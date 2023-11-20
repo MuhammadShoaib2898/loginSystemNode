@@ -18,8 +18,31 @@ module.exports = {
                    return callback(err);
                 }
                 return callback(null, result);
+            }     
+        );
+    },
+    getUser: callback => {
+        pool.query(
+            `select * from registration`,
+            [],
+            (err, result, field) => {
+                if(err){
+                    return callback(err);
+                }
+                return callback(null, result);
             }
-                
-        )
-    }
+        );
+    },
+    getUserByID: (id, callback) => {
+        pool.query(
+            `select * from registration where id = ?`,
+            [id],
+            (err, result, field) => {
+                if(err){
+                    return callback(err);
+                }
+                return callback(null, result);
+            }
+        );
+    },
 }
